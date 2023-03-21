@@ -113,7 +113,11 @@ const ProductForm = () => {
         }
       }
       try {
-        await axios.post(`${BASE_URL}/create.php`, postData);
+        //await axios.post(`${BASE_URL}/create.php`, postData);
+        await fetch(`${BASE_URL}/create.php`, {
+          method: "post",
+          body: JSON.stringify(postData),
+        });
         navigate("/");
       } catch (error: any) {
         console.log(error);

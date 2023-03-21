@@ -33,8 +33,12 @@ const Home = () => {
 
   const handleDeleteClick = async () => {
     try {
-      await axios.post(`${BASE_URL}/delete.php`, {
+      /* await axios.post(`${BASE_URL}/delete.php`, {
         ids: checkedProductIds,
+      }); */
+      await fetch(`${BASE_URL}/delete.php`, {
+        method: "post",
+        body: JSON.stringify({ ids: checkedProductIds }),
       });
       window.location.reload();
     } catch (error) {
