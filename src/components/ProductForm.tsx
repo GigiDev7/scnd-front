@@ -113,11 +113,7 @@ const ProductForm = () => {
         }
       }
       try {
-        await axios.post(`${BASE_URL}/create.php`, postData, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        await axios.post(`${BASE_URL}/create.php`, postData);
         navigate("/");
       } catch (error: any) {
         console.log(error);

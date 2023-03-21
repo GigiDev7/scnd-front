@@ -36,7 +36,6 @@ const Home = () => {
       await axios.post(`${BASE_URL}/delete.php`, {
         ids: checkedProductIds,
       });
-      setCheckedProductIds([]);
       window.location.reload();
     } catch (error) {
       console.log(error);
