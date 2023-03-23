@@ -40,7 +40,11 @@ const Home = () => {
         method: "post",
         body: JSON.stringify({ ids: checkedProductIds }),
       });
-      window.location.reload();
+      setProducts(
+        (prev) => prev?.filter((item) => !checkedProductIds.includes(item.id))!
+      );
+      setCheckedProductIds([]);
+      //window.location.reload();
     } catch (error) {
       console.log(error);
     }

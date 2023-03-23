@@ -15,7 +15,13 @@ const ProductCard: React.FC<{
       <p>{product.sku}</p>
       <p>{product.name}</p>
       <p>{(+product.price).toFixed(2)}$</p>
-      <p>{product.attribute}</p>
+      <p>
+        {product.type === "DVD"
+          ? `Size ${product.size}MB`
+          : product.type === "Book"
+          ? `Weight ${product.weight}KG`
+          : `Dimensions ${product.height}x${product.width}x${product.length}`}
+      </p>
     </div>
   );
 };
