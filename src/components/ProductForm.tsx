@@ -114,17 +114,23 @@ const ProductForm = () => {
       }
       try {
         //await axios.post(`${BASE_URL}/create.php`, postData);
-        await fetch(`${BASE_URL}/create.php`, {
+        const result = await fetch(`${BASE_URL}/create.php`, {
           method: "post",
           body: JSON.stringify(postData),
         });
+        const data = await result.json();
+        if (!result.ok) {
+          setFormData((prev) => {
+            return {
+              ...prev,
+              sku: { ...prev.sku, errorMessage: data?.message },
+            };
+          });
+          return;
+        }
         navigate("/");
       } catch (error: any) {
         console.log(error);
-        const err = error.response?.data?.message;
-        setFormData((prev) => {
-          return { ...prev, sku: { ...prev.sku, errorMessage: err } };
-        });
       }
     }
   };
